@@ -12,9 +12,10 @@ class ProductModel extends Model
         'product_code',
         'product_name',
         'price',
-        'quantity',
+        'currency',
         'discount',
         'dimension',
-        'unit'
+        'unit',
+        'stock',
     ];
 }
