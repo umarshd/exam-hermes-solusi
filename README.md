@@ -1,2 +1,3 @@
-# singkono
-Sistem Informasi Naskah Kuno
+# Exam Hermes
+
+Aplikasi Penjualan Sederhana
