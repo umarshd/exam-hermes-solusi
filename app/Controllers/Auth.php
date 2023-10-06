@@ -18,7 +18,7 @@ class Auth extends BaseController
         $data = [
             'title' => 'Login'
         ];
-        return view('auth/login', $data);
+        return view('auth', $data);
     }
 
     public function register()
@@ -29,7 +29,7 @@ class Auth extends BaseController
         return view('auth/register', $data);
     }
 
-    public function processLogin()
+    public function prosesLogin()
     {
         $rules = $this->validate([
             'email' => [
@@ -49,7 +49,7 @@ class Auth extends BaseController
 
 
         if (!$rules) {
-            session()->setFlashdata('errors', $this->validator->listErrors());
+            session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->to('/')->withInput();
         }
 
@@ -60,12 +60,12 @@ class Auth extends BaseController
         $user = $this->UserModel->where('email', $email)->first();
 
         if (!$user) {
-            session()->setFlashdata('errors', ['Email atau password salah']);
+            session()->setFlashdata('error', ['Email atau password salah']);
             return redirect()->to('/')->withInput();
         }
 
         if (!password_verify($password, $user['password'])) {
-            session()->setFlashdata('errors', ['Email atau password salah']);
+            session()->setFlashdata('error', ['Email atau password salah']);
             return redirect()->to('/')->withInput();
         }
 
@@ -86,7 +86,7 @@ class Auth extends BaseController
 
     }
 
-    public function processRegister()
+    public function prosesRegister()
     {
         $rules = $this->validate([
             'name' => [
@@ -120,7 +120,7 @@ class Auth extends BaseController
         ]);
 
         if (!$rules) {
-            session()->setFlashdata('errors', $this->validator->listErrors());
+            session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->to('/register')->withInput();
         }
 
