@@ -48,6 +48,13 @@ $routes->group('admin', function ($routes) {
     $routes->get('produk/(:num)/edit', 'Admin\Product::edit/$1');
     $routes->post('produk/edit/proses', 'Admin\Product::prosesEdit');
     $routes->get('produk/(:num)/delete', 'Admin\Product::delete/$1');
+
+    $routes->get('user', 'Admin\User::index');
+    $routes->get('user/tambah', 'Admin\User::tambah');
+    $routes->post('user/tambah/proses', 'Admin\User::prosesTambah');
+    $routes->get('user/(:num)/edit', 'Admin\User::edit/$1');
+    $routes->post('user/edit/proses', 'Admin\User::prosesEdit');
+    $routes->get('user/(:num)/delete', 'Admin\User::delete/$1');
 });
 
 /*
