@@ -88,7 +88,7 @@
 
               <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                 <span class="text-dark">
-                  <?= session()->get('nama') ?>
+                  <?= session()->get('name') ?>
                 </span>
               </a>
               <div class="dropdown-menu dropdown-menu-end">

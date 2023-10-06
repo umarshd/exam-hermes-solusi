@@ -72,6 +72,7 @@ class Auth extends BaseController
         $data = [
             'user_id' => $user['id'],
             'name' => $user['name'],
+            'email' => $user['email'],
             'role' => $user['role'],
             'logged_in' => TRUE
         ];
@@ -79,9 +80,9 @@ class Auth extends BaseController
         session()->set($data);
 
         if ($user['role'] == 'admin') {
-            return redirect()->to('/admin');
+            return redirect()->to('/admin/dashboard');
         } else {
-            return redirect()->to('/user');
+            return redirect()->to('/user/dashboard');
         }
 
     }
@@ -135,6 +136,12 @@ class Auth extends BaseController
 
         session()->setFlashdata('success', 'Register berhasil, silahkan login');
 
+        return redirect()->to('/');
+    }
+
+    public function logout()
+    {
+        session()->destroy();
         return redirect()->to('/');
     }
 }
