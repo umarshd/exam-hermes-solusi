@@ -41,6 +41,13 @@ $routes->get('/logout', 'Auth::logout');
 
 $routes->group('admin', function ($routes) {
     $routes->get('dashboard', 'Admin\Dashboard::index');
+
+    $routes->get('produk', 'Admin\Product::index');
+    $routes->get('produk/tambah', 'Admin\Product::tambah');
+    $routes->post('produk/tambah/proses', 'Admin\Product::prosesTambah');
+    $routes->get('produk/(:num)/edit', 'Admin\Product::edit/$1');
+    $routes->post('produk/edit/proses', 'Admin\Product::prosesEdit');
+    $routes->get('produk/(:num)/delete', 'Admin\Product::delete/$1');
 });
 
 /*

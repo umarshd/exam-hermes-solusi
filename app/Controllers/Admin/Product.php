@@ -15,9 +15,9 @@ class Product extends BaseController
     {
         $data = [
             'title' => 'Product',
-            'content' => 'admin/product/index'
+            'dataProduk' => $this->ProductModel->findAll()
         ];
-        return view('admin/layout/wrapper', $data);
+        return view('admin/produk/index', $data);
     }
 
     public function tambah()
@@ -83,7 +83,7 @@ class Product extends BaseController
         ]);
 
         if (!$rules) {
-            session()->setFlashdata('errors', $this->validator->listErrors());
+            session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->to('/admin/produk/tambah')->withInput();
         }
 
@@ -107,17 +107,17 @@ class Product extends BaseController
     {
         $data = [
             'title' => 'Edit Product',
-            'product' => $this->ProductModel->find($id)
+            'produk' => $this->ProductModel->find($id)
 
         ];
         return view('admin/produk/edit', $data);
     }
 
-    public function prosesEdit($id)
+    public function prosesEdit()
     {
         $rules = $this->validate([
             'product_code' => [
-                'rules' => 'required|is_unique[products.product_code,id,' . $id . ']',
+                'rules' => 'required|is_unique[products.product_code,id,' . $this->request->getVar('id') . ']',
                 'errors' => [
                     'required' => 'Kode Produk harus diisi',
                     'is_unique' => 'Kode Produk sudah ada'
@@ -167,6 +167,8 @@ class Product extends BaseController
             ]
         ]);
 
+        $id = $this->request->getVar('id');
+
         if (!$rules) {
             session()->setFlashdata('errors', $this->validator->listErrors());
             return redirect()->to('/admin/produk/edit/' . $id)->withInput();
@@ -189,7 +191,7 @@ class Product extends BaseController
 
     }
 
-    public function hapus($id)
+    public function delete($id)
     {
         $this->ProductModel->delete($id);
         session()->setFlashdata('success', 'Data berhasil dihapus');
