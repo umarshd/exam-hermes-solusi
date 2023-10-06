@@ -37,6 +37,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::login');
 $routes->post('/proses/login', 'Auth::prosesLogin');
+$routes->get('/register', 'Auth::register');
+$routes->post('/proses/register', 'Auth::prosesRegister');
 $routes->get('/logout', 'Auth::logout');
 
 $routes->group('admin', function ($routes) {

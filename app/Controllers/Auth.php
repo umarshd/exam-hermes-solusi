@@ -26,7 +26,7 @@ class Auth extends BaseController
         $data = [
             'title' => 'Register'
         ];
-        return view('auth/register', $data);
+        return view('register', $data);
     }
 
     public function prosesLogin()
@@ -111,7 +111,7 @@ class Auth extends BaseController
                     'min_length' => 'Password minimal 8 karakter'
                 ]
             ],
-            'password_confirm' => [
+            'password_konfirmasi' => [
                 'rules' => 'required|matches[password]',
                 'errors' => [
                     'required' => 'Konfirmasi password harus diisi',
