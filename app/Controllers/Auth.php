@@ -60,12 +60,12 @@ class Auth extends BaseController
         $user = $this->UserModel->where('email', $email)->first();
 
         if (!$user) {
-            session()->setFlashdata('error', ['Email atau password salah']);
+            session()->setFlashdata('error', 'Email atau password salah');
             return redirect()->to('/')->withInput();
         }
 
         if (!password_verify($password, $user['password'])) {
-            session()->setFlashdata('error', ['Email atau password salah']);
+            session()->setFlashdata('error', 'Email atau password salah');
             return redirect()->to('/')->withInput();
         }
 
